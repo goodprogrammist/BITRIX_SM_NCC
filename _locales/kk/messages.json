@@ -1,0 +1,105 @@
+{
+    "popupUnsupported": {
+        "message": "Бұл бетте cookie орнату мүмкін емес."
+    },
+    "needPermission": {
+        "message": "Cookie файлдарын басқару үшін кеңейтуге сайттарға рұқсат қажет."
+    },
+    "grantAccess": {
+        "message": "Рұқсат беру"
+    },
+    "setCookieFor": {
+        "message": "Cookie орнату аймағы"
+    },
+    "scopeHostOnly": {
+        "message": "$1 (тек осы хост)"
+    },
+    "scopeWithSubdomains": {
+        "message": ".$1 (ішкі домендерімен)"
+    },
+    "failed": {
+        "message": "Қате: $1"
+    },
+    "scopeFailed": {
+        "message": "Бұл доменге cookie орнату мүмкін болмады: $1"
+    },
+    "permissionFailed": {
+        "message": "Рұқсат сұрау сәтсіз аяқталды: $1"
+    },
+    "settings": {
+        "message": "Баптаулар"
+    },
+    "setButton": {
+        "message": "Қолдану"
+    },
+    "forThisSite": {
+        "message": "осы сайт үшін"
+    },
+    "optOffColor": {
+        "message": "Белгіше түсі: өшірулі"
+    },
+    "optOnColor": {
+        "message": "Белгіше түсі: қосулы"
+    },
+    "optSave": {
+        "message": "Сақтау"
+    },
+    "optSaved": {
+        "message": "Баптаулар сақталды."
+    },
+    "optSaveError": {
+        "message": "Сақтау кезінде қате орын алды, қайталап көріңіз."
+    },
+    "optInvalidName": {
+        "message": "Cookie атауы жарамсыз: «$1»."
+    },
+    "langCode": {
+        "message": "kk",
+        "description": "Language code of this translation for the lang attribute"
+    },
+    "extName": {
+        "message": "Bitrix _NCC: композиттік кэшті өшіру"
+    },
+    "extDescription": {
+        "message": "Жөндеу кезінде ағымдағы сайтта композиттік кэшті өшіру үшін Bitrix _NCC cookie (BITRIX_SM_NCC=Y) қосады."
+    },
+    "trigger_ncc": {
+        "message": "Композиттік кэшті өшіру"
+    },
+    "siteCookieName": {
+        "message": "Осы сайтқа арналған cookie атауы"
+    },
+    "siteCookieNameHint": {
+        "message": "Бос болса — баптаулардағы атау. Нақты атауы — /bitrix/html_pages/.config.php ішіндегі \"COOKIE_NCC\" (cookie префиксі + _NCC)."
+    },
+    "resetButton": {
+        "message": "Тазарту"
+    },
+    "changeSiteNameTitle": {
+        "message": "Осы сайттың cookie атауын өзгерту"
+    },
+    "openWithoutComposite": {
+        "message": "Композитсіз ашу (?ncc=1)"
+    },
+    "openWithoutCompositeHint": {
+        "message": "Кэшті nginx өзі беретін және cookie тексерілмейтін серверлер үшін."
+    },
+    "titleOff": {
+        "message": "_NCC cookie: өшірулі"
+    },
+    "titleOn": {
+        "message": "Композиттік кэш өшірілген ($1)"
+    },
+    "titleUnavailable": {
+        "message": "_NCC cookie (бұл бетте қолжетімсіз)"
+    },
+    "titleNoPermission": {
+        "message": "_NCC cookie: сайттарға рұқсат беру үшін басыңыз"
+    },
+    "optCookieName": {
+        "message": "Cookie атауы (әдетте BITRIX_SM_NCC)"
+    },
+    "optCookieNameHint": {
+        "message": "Сайттың cookie префиксі + _NCC. Нақты атауы — /bitrix/html_pages/.config.php ішіндегі \"COOKIE_NCC\". Префиксі басқа сайт үшін кеңейту терезесінде өз атауын көрсетіңіз (cookie атауын басыңыз)."
+    }
+}

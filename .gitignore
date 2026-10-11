@@ -1,5 +1,6 @@
 # intellij
 .idea/
+.vscode/
 
 # packed extendsion
 *.zip
@@ -7,3 +8,8 @@
 # shells
 *.sh
 
+
+# node
+node_modules/
+web-ext-artifacts/
+test-results/

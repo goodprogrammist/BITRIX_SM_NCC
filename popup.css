@@ -1,0 +1,158 @@
+:root {
+    color-scheme: light dark;
+    --text: #15141a;
+    --muted: #6b6a70;
+    --bg: #ffffff;
+    --border: #d7d7db;
+    --accent: #c0392b;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #fbfbfe;
+        --muted: #a8a8b0;
+        --bg: #2b2a33;
+        --border: #52525e;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 10px 12px;
+    width: 300px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font: 13px/1.4 system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.host {
+    font-weight: 600;
+    margin-bottom: 8px;
+    word-break: break-all;
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.trigger-label {
+    font-weight: 600;
+    min-width: 52px;
+}
+
+.trigger-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.trigger-ide {
+    color: var(--text);
+    font-size: 12px;
+}
+
+.trigger-cookie {
+    color: var(--muted);
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.scope-row {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+}
+
+.scope,
+.site-ide {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.site-ide-row {
+    margin-top: 8px;
+}
+
+.site-ide-custom-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.site-ide-custom {
+    flex: 1;
+    min-width: 0;
+}
+
+.notice,
+.error {
+    margin: 6px 0;
+}
+
+.error {
+    color: var(--accent);
+}
+
+.grant {
+    display: block;
+    margin-top: 6px;
+}
+
+.footer {
+    margin-top: 8px;
+    text-align: right;
+}
+
+.footer a {
+    color: var(--muted);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.trigger-cookie {
+    color: var(--muted);
+}
+
+.site-name-row {
+    margin-top: 8px;
+}
+
+.site-name {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+
+.hint {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.site-name-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.ncc-row {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+}
+
+.open-ncc {
+    width: 100%;
+}

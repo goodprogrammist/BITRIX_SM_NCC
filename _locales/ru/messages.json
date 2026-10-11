@@ -1,0 +1,105 @@
+{
+    "popupUnsupported": {
+        "message": "На этой странице нельзя установить cookie."
+    },
+    "needPermission": {
+        "message": "Расширению нужен доступ к сайтам, чтобы управлять cookie."
+    },
+    "grantAccess": {
+        "message": "Дать доступ"
+    },
+    "setCookieFor": {
+        "message": "Ставить cookie для"
+    },
+    "scopeHostOnly": {
+        "message": "$1 (только этот хост)"
+    },
+    "scopeWithSubdomains": {
+        "message": ".$1 (с поддоменами)"
+    },
+    "failed": {
+        "message": "Ошибка: $1"
+    },
+    "scopeFailed": {
+        "message": "Не удалось установить cookie для этого домена: $1"
+    },
+    "permissionFailed": {
+        "message": "Не удалось запросить доступ: $1"
+    },
+    "settings": {
+        "message": "Настройки"
+    },
+    "setButton": {
+        "message": "Применить"
+    },
+    "forThisSite": {
+        "message": "для этого сайта"
+    },
+    "optOffColor": {
+        "message": "Цвет иконки: выключено"
+    },
+    "optOnColor": {
+        "message": "Цвет иконки: включено"
+    },
+    "optSave": {
+        "message": "Сохранить"
+    },
+    "optSaved": {
+        "message": "Настройки сохранены."
+    },
+    "optSaveError": {
+        "message": "При сохранении произошла ошибка, попробуйте ещё раз."
+    },
+    "optInvalidName": {
+        "message": "Недопустимое имя cookie: «$1»."
+    },
+    "langCode": {
+        "message": "ru",
+        "description": "Language code of this translation for the lang attribute"
+    },
+    "extName": {
+        "message": "Bitrix _NCC: отключение композитного кеша"
+    },
+    "extDescription": {
+        "message": "Включает cookie Bitrix _NCC (BITRIX_SM_NCC=Y), чтобы отключить композитный кеш на текущем сайте при отладке."
+    },
+    "trigger_ncc": {
+        "message": "Отключить композитный кеш"
+    },
+    "siteCookieName": {
+        "message": "Имя cookie для этого сайта"
+    },
+    "siteCookieNameHint": {
+        "message": "Пусто — имя из настроек. Точное имя — \"COOKIE_NCC\" в /bitrix/html_pages/.config.php (префикс cookie + _NCC)."
+    },
+    "resetButton": {
+        "message": "Сбросить"
+    },
+    "changeSiteNameTitle": {
+        "message": "Изменить имя cookie для этого сайта"
+    },
+    "openWithoutComposite": {
+        "message": "Открыть без композита (?ncc=1)"
+    },
+    "openWithoutCompositeHint": {
+        "message": "Для серверов, где кеш отдаёт nginx и cookie не проверяется."
+    },
+    "titleOff": {
+        "message": "Cookie _NCC: выключена"
+    },
+    "titleOn": {
+        "message": "Композитный кеш отключён ($1)"
+    },
+    "titleUnavailable": {
+        "message": "Cookie _NCC (недоступно на этой странице)"
+    },
+    "titleNoPermission": {
+        "message": "Cookie _NCC: нажмите, чтобы дать доступ к сайтам"
+    },
+    "optCookieName": {
+        "message": "Имя cookie (обычно BITRIX_SM_NCC)"
+    },
+    "optCookieNameHint": {
+        "message": "Префикс cookie сайта + _NCC. Точное имя — \"COOKIE_NCC\" в /bitrix/html_pages/.config.php. Для сайта с другим префиксом задайте своё имя в окне расширения (нажмите на имя cookie)."
+    }
+}

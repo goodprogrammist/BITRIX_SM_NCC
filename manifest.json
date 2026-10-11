@@ -1,43 +1,74 @@
 {
-    "manifest_version": 2,
-    "name": "Manage _NCC Cookie for Bitrix",
-    "version": "0.1",
+    "manifest_version": 3,
+    "name": "__MSG_extName__",
+    "version": "1.0",
+    "default_locale": "en",
 
-    "description": "Manage cookie that disables Composite technology.",
-    "homepage_url": "https://github.com/goodprogrammist/bitrix_NCC_cookie",
+    "description": "__MSG_extDescription__",
+    "homepage_url": "https://github.com/goodprogrammist/BITRIX_SM_NCC",
 
     "icons": {
+        "16": "icons/bug-green-16.png",
+        "32": "icons/bug-green-32.png",
         "64": "icons/bug-green-64.png",
-        "128": "icons/bug-green-128.png"
+        "128": "icons/bug-green-128-padded.png"
     },
 
     "permissions": [
-        "tabs",
         "cookies",
-        "storage",
-        "<all_urls>"
+        "storage"
     ],
 
-    "browser_action": {
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+
+    "action": {
         "default_icon": {
+            "16": "icons/bug-light-16.png",
+            "32": "icons/bug-light-32.png",
             "64": "icons/bug-light-64.png",
             "128": "icons/bug-light-128.png"
         },
-        "default_title": "_NCC (off)"
+        "default_title": "_NCC",
+        "default_popup": "popup.html"
+    },
+
+    "commands": {
+        "_execute_action": {
+            "description": "Open popup"
+        },
+        "toggle-ncc": {
+            "suggested_key": {
+                "default": "Alt+Shift+Y"
+            },
+            "description": "Toggle _NCC cookie (disable Bitrix composite cache)"
+        }
     },
 
     "options_ui": {
         "page": "options.html",
-        "browser_style": true
+        "open_in_tab": false
     },
 
-    "applications": {
+    "browser_specific_settings": {
         "gecko": {
-            "id": "ncc_cookie_setup@goodprogrammist.ru"
+            "id": "ncc_cookie_setup@goodprogrammist.ru",
+            "strict_min_version": "140.0",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
+        },
+        "gecko_android": {
+            "strict_min_version": "142.0"
         }
     },
 
+    "minimum_chrome_version": "121",
+
     "background": {
-        "scripts": ["cookie_ncc.js"]
+        "service_worker": "background.js",
+        "scripts": ["common.js", "background.js"]
     }
 }

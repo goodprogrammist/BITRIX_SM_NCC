@@ -1,51 +1,97 @@
-const visiblityClass = 'is-visible';
+const visibilityClass = 'is-visible';
+const OPTIONS_LOG_PREFIX = '[NCC options]';
 
 async function saveOptions(e) {
     e.preventDefault();
     hideMessages();
+    document.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
 
-    let saved = browser.storage.sync.set({
-        cookie_ncc: document.querySelector(".cookie_ncc").value,
-        cookie_ncc_on_color: document.querySelector(".cookie-ncc-on-color:checked").value,
-        cookie_ncc_off_color: document.querySelector(".cookie-ncc-off-color:checked").value
-    });
-    saved.then(showSuccess, showError);
+    let onColor = document.querySelector(".cookie-ncc-on-color:checked");
+    let offColor = document.querySelector(".cookie-ncc-off-color:checked");
+    let nameInput = document.querySelector(".cookie_ncc");
+    // Storage keys are the same as in version 0.1
+    let options = {
+        cookie_ncc: nameInput.value.trim(),
+        cookie_ncc_on_color: onColor ? onColor.value : DEFAULT_ON_COLOR,
+        cookie_ncc_off_color: offColor ? offColor.value : DEFAULT_OFF_COLOR
+    };
+
+    let errors = [];
+    if (options.cookie_ncc && !isValidCookieName(options.cookie_ncc)) {
+        errors.push(t('optInvalidName', options.cookie_ncc));
+        nameInput.classList.add("invalid");
+    }
+    if (errors.length) {
+        console.debug(OPTIONS_LOG_PREFIX, 'not saved, invalid values:', errors);
+        showError(errors.join(' '));
+        return;
+    }
+    console.debug(OPTIONS_LOG_PREFIX, 'saving', options);
+
+    try {
+        await requireApi('storage.' + SETTINGS_AREA + '.set', [options]);
+        showSuccess();
+    } catch (err) {
+        showError(err);
+    }
 }
 
 async function restoreOptions() {
-    const items = [
-        'cookie_ncc',
-        'cookie_ncc_on_color',
-        'cookie_ncc_off_color'
-    ];
-    let sessionKey = await browser.storage.sync.get(items);
+    let trigger = (await getTriggerSettings())[0];
+    let colors = await getColors();
+    console.debug(OPTIONS_LOG_PREFIX, 'restored', trigger, colors);
 
-    document.querySelector(".cookie_ncc").value = sessionKey.cookie_ncc || '?????_NCC';
+    // The placeholder "?????_NCC" saved by version 0.1 is shown as the default name
+    document.querySelector(".cookie_ncc").value = trigger.globalName;
+    document.querySelector(".cookie-ncc-on-color[value=" + colors.on + "]").checked = true;
+    document.querySelector(".cookie-ncc-off-color[value=" + colors.off + "]").checked = true;
 
-    let onColor = sessionKey.cookie_ncc_on_color || 'red';
-    let offColor = sessionKey.cookie_ncc_off_color || 'light';
-    document.querySelector(".cookie-ncc-on-color[value="+ onColor +"]").checked = true;
-    document.querySelector(".cookie-ncc-off-color[value="+ offColor +"]").checked = true;
+    await renderPermission();
+}
+
+async function renderPermission() {
+    let permitted = await hasHostPermission();
+    console.debug(OPTIONS_LOG_PREFIX, 'host permission:', permitted);
+    document.querySelector(".permission-row").hidden = permitted;
+}
+
+async function onGrantClick() {
+    try {
+        await requestHostPermission();
+    } catch (err) {
+        console.error(OPTIONS_LOG_PREFIX, 'permission request failed', err);
+    }
+    await renderPermission();
 }
 
 function showSuccess() {
     let messageClass = document.querySelector(".saved-successfully").classList;
 
-    messageClass.add(visiblityClass);
+    messageClass.add(visibilityClass);
     setTimeout(function() {
         hideMessages();
     }, 2000);
 }
 
-function showError() {
-    let messageClass = document.querySelector(".saved-error").classList;
-    messageClass.add('is-visible');
+// message - validation text; without it (storage error) the generic text is shown
+function showError(message) {
+    let element = document.querySelector(".saved-error");
+    if (typeof message === 'string') {
+        element.textContent = message;
+    } else {
+        console.error(OPTIONS_LOG_PREFIX, 'save failed', message);
+        element.textContent = t('optSaveError');
+    }
+    element.classList.add(visibilityClass);
 }
 
 function hideMessages() {
-    let messages = document.querySelector(".message").classList;
-    messages.remove(visiblityClass);
+    document.querySelectorAll(".message").forEach(function(message) {
+        message.classList.remove(visibilityClass);
+    });
 }
 
+localizePage();
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
+document.querySelector(".grant").addEventListener("click", onGrantClick);

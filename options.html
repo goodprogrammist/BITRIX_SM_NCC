@@ -6,13 +6,21 @@
         <link href="options.css" rel="stylesheet">
     </head>
 <body>
+    <div class="permission-row" hidden>
+        <span data-i18n="needPermission"></span>
+        <button type="button" class="grant" data-i18n="grantAccess"></button>
+    </div>
+
     <form class="options-form">
         <div class="form-row">
-            <label class="input-label">Put here Cookie name (see /bitrix/html_pages/.config.php - search "COOKIE_NCC" => "?????_NCC")</label>
-            <input type="text" class="cookie_ncc">
+            <label class="input-label" data-i18n="optCookieName"></label>
+            <input type="text" class="cookie_ncc" placeholder="BITRIX_SM_NCC">
         </div>
         <div class="form-row">
-            <label class="input-label">Off icon color</label>
+            <span class="hint" data-i18n="optCookieNameHint"></span>
+        </div>
+        <div class="form-row">
+            <label class="input-label" data-i18n="optOffColor"></label>
             <label>
                 <input type="radio" name="off_color" class="cookie-ncc-off-color" value="red">
                 <img class="cookie-ncc-icon" src="icons/bug-red-64.png" alt="red">
@@ -31,7 +39,7 @@
             </label>
         </div>
         <div class="form-row">
-            <label class="input-label">On icon color</label>
+            <label class="input-label" data-i18n="optOnColor"></label>
             <label>
                 <input type="radio" name="on_color" class="cookie-ncc-on-color" value="red">
                 <img class="cookie-ncc-icon" src="icons/bug-red-64.png" alt="red">
@@ -50,19 +58,17 @@
             </label>
         </div>
         <div class="form-row">
-            <button type="submit">Save</button>
+            <button type="submit" data-i18n="optSave"></button>
         </div>
     </form>
 
     <div class="message-container">
-        <div class="message saved-successfully">
-            Options saved successfully.
-        </div>
+        <div class="message saved-successfully" data-i18n="optSaved"></div>
 
-        <div class="message saved-error">
-            There ware some errors during save, please try again.
-        </div>
+        <div class="message saved-error" data-i18n="optSaveError"></div>
     </div>
+
+    <script src="common.js"></script>
     <script src="options.js"></script>
 </body>
 </html>

@@ -1,0 +1,105 @@
+{
+    "popupUnsupported": {
+        "message": "Cookies can't be set on this page."
+    },
+    "needPermission": {
+        "message": "The addon needs access to sites to manage cookies."
+    },
+    "grantAccess": {
+        "message": "Grant access"
+    },
+    "setCookieFor": {
+        "message": "Set cookie for"
+    },
+    "scopeHostOnly": {
+        "message": "$1 (this host only)"
+    },
+    "scopeWithSubdomains": {
+        "message": ".$1 (with subdomains)"
+    },
+    "failed": {
+        "message": "Failed: $1"
+    },
+    "scopeFailed": {
+        "message": "Failed to set cookie for this domain: $1"
+    },
+    "permissionFailed": {
+        "message": "Permission request failed: $1"
+    },
+    "settings": {
+        "message": "Settings"
+    },
+    "setButton": {
+        "message": "Set"
+    },
+    "forThisSite": {
+        "message": "for this site"
+    },
+    "optOffColor": {
+        "message": "Off icon color"
+    },
+    "optOnColor": {
+        "message": "On icon color"
+    },
+    "optSave": {
+        "message": "Save"
+    },
+    "optSaved": {
+        "message": "Options saved successfully."
+    },
+    "optSaveError": {
+        "message": "There were some errors during save, please try again."
+    },
+    "optInvalidName": {
+        "message": "Invalid cookie name: \"$1\"."
+    },
+    "langCode": {
+        "message": "en",
+        "description": "Language code of this translation for the lang attribute"
+    },
+    "extName": {
+        "message": "Bitrix _NCC Cookie: Disable Composite Cache"
+    },
+    "extDescription": {
+        "message": "Toggle the Bitrix _NCC cookie (BITRIX_SM_NCC=Y) to disable the composite cache on the current site while debugging."
+    },
+    "trigger_ncc": {
+        "message": "Disable composite cache"
+    },
+    "siteCookieName": {
+        "message": "Cookie name for this site"
+    },
+    "siteCookieNameHint": {
+        "message": "Empty — the name from the settings. The exact name is \"COOKIE_NCC\" in /bitrix/html_pages/.config.php (cookie prefix + _NCC)."
+    },
+    "resetButton": {
+        "message": "Reset"
+    },
+    "changeSiteNameTitle": {
+        "message": "Change the cookie name for this site"
+    },
+    "openWithoutComposite": {
+        "message": "Open without composite (?ncc=1)"
+    },
+    "openWithoutCompositeHint": {
+        "message": "For servers where nginx serves the composite cache itself and does not check the cookie."
+    },
+    "titleOff": {
+        "message": "_NCC cookie: off"
+    },
+    "titleOn": {
+        "message": "Composite cache disabled ($1)"
+    },
+    "titleUnavailable": {
+        "message": "_NCC cookie (not available on this page)"
+    },
+    "titleNoPermission": {
+        "message": "_NCC cookie: click to grant access to sites"
+    },
+    "optCookieName": {
+        "message": "Cookie name (usually BITRIX_SM_NCC)"
+    },
+    "optCookieNameHint": {
+        "message": "Cookie prefix of the site + _NCC. The exact name is \"COOKIE_NCC\" in /bitrix/html_pages/.config.php. For a site with another prefix set its own name in the popup (click the cookie name)."
+    }
+}
