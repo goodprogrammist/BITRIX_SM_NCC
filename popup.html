@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="popup.css" rel="stylesheet">
+    </head>
+<body>
+    <div class="host"></div>
+
+    <div class="notice unsupported" hidden data-i18n="popupUnsupported"></div>
+
+    <div class="notice no-permission" hidden>
+        <span data-i18n="needPermission"></span>
+        <button type="button" class="grant" data-i18n="grantAccess"></button>
+    </div>
+
+    <div class="controls" hidden>
+        <div class="triggers"></div>
+
+        <label class="scope-row">
+            <span data-i18n="setCookieFor"></span>
+            <select class="scope"></select>
+        </label>
+
+        <div class="ncc-row">
+            <button type="button" class="open-ncc" data-i18n="openWithoutComposite"></button>
+            <span class="hint" data-i18n="openWithoutCompositeHint"></span>
+        </div>
+
+        <form class="site-name-row" hidden>
+            <label>
+                <span data-i18n="siteCookieName"></span>
+                <input type="text" class="site-name">
+            </label>
+            <span class="hint" data-i18n="siteCookieNameHint"></span>
+            <span class="site-name-buttons">
+                <button type="submit" data-i18n="setButton"></button>
+                <button type="button" class="site-name-reset" data-i18n="resetButton"></button>
+            </span>
+        </form>
+    </div>
+
+    <div class="error" hidden></div>
+
+    <div class="footer">
+        <a href="#" class="open-options" data-i18n="settings"></a>
+    </div>
+
+    <template class="trigger-template">
+        <label class="trigger">
+            <input type="checkbox">
+            <span class="trigger-info">
+                <span class="trigger-label"></span>
+                <a href="#" class="trigger-cookie"></a>
+            </span>
+        </label>
+    </template>
+
+    <script src="common.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

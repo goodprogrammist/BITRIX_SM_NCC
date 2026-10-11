@@ -1,7 +1,9 @@
 :root {
+    /* Default colors and form controls follow the browser light/dark theme */
+    color-scheme: light dark;
     --gutter-size: 10px;
     --input-height: 2rem;
-    --label-width: 30rem;
+    --label-width: 26rem;
 }
 
 .options-form,
@@ -51,7 +53,7 @@ input[type=radio],
 
 .message-container {
     position: relative;
-    height: 3.1rem;
+    min-height: 3.1rem;
 }
 
 .message {
@@ -82,4 +84,52 @@ input[type=radio],
 .is-visible {
     opacity: 1;
     z-index: 2;
+}
+
+.triggers .form-row + .form-row,
+.triggers + .form-row {
+    margin-top: var(--gutter-size);
+}
+
+.triggers .form-row:has(.trigger-name):not(:first-child) {
+    margin-top: calc(3 * var(--gutter-size));
+}
+
+.form-row > input[type=text] {
+    flex: 1;
+    min-width: 8rem;
+}
+
+.permission-row {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #c0392b;
+    border-radius: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.welcome-row {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #16a085;
+    border-radius: 3px;
+}
+
+.form-row > select {
+    margin: 0 var(--gutter-size);
+    height: var(--input-height);
+    flex: 1;
+}
+
+.form-row > .hint {
+    margin-left: calc(var(--label-width) + 2 * var(--gutter-size));
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
+
+.invalid {
+    outline: 2px solid #c0392b;
 }

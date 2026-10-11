@@ -1,0 +1,20 @@
+{
+  "name": "bitrix-ncc-cookie",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Firefox/Chrome extension: toggle the Bitrix _NCC cookie (disable Composite cache) for the current site",
+  "license": "MIT",
+  "scripts": {
+    "lint": "web-ext lint",
+    "build": "web-ext build --overwrite-dest",
+    "test": "npm run test:unit && npm run test:chrome",
+    "test:chrome": "node --test --test-concurrency=1 tests/chrome.test.js",
+    "test:firefox": "npm run build && node --test --test-concurrency=1 tests/firefox.test.js",
+    "test:unit": "node --test tests/unit.test.js"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1",
+    "selenium-webdriver": "4.49.0",
+    "web-ext": "10.7.0"
+  }
+}
