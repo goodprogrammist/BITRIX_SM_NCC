@@ -3,7 +3,19 @@
     color-scheme: light dark;
     --gutter-size: 10px;
     --input-height: 2rem;
-    --label-width: 26rem;
+    --label-width: 14rem;
+}
+
+/* The browser sizes the embedded options dialog to the content: a fixed width keeps it from
+   jumping (and showing scrollbars) while the page is being localized and filled in */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    box-sizing: border-box;
+    width: 38rem;
+    max-width: 100%;
 }
 
 .options-form,
