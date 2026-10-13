@@ -158,6 +158,32 @@ test('settings: default name, placeholder of version 0.1, global and per-site na
     assert.deepEqual(browser.storage.local.data, {});
 });
 
+test('NCC cookie name is detected from the Bitrix cookie prefix of the site', () => {
+    const { context } = load(androidBrowser([], []), ['common.js']);
+    const detect = names => context.nccNameFromCookieNames(names);
+    assert.equal(detect(['PHPSESSID', 'ARGO_GUEST_ID', 'ARGO_LAST_VISIT', 'ARGO_SALE_UID', 'ARGO_kernel', 'ARGO_kernel_0']), 'ARGO_NCC');
+    assert.equal(detect(['BITRIX_SM_GUEST_ID', 'BITRIX_SM_LOGIN']), 'BITRIX_SM_NCC');
+    assert.equal(detect(['_ga', 'PHPSESSID', 'theme']), '');
+    assert.equal(detect([]), '');
+});
+
+test('detected name is saved for the site unless the user chose one', async () => {
+    const browser = androidBrowser([], []);
+    const jar = ['PHPSESSID', 'ARGO_GUEST_ID', 'ARGO_SALE_UID'];
+    browser.cookies.getAll = async () => jar.map(name => ({ name }));
+    browser.cookies.getAllCookieStores = async () => [{ id: '0', tabIds: [1] }];
+    const { context } = load(browser, ['common.js']);
+    const tab = { id: 1, url: 'https://an.example.com/' };
+
+    assert.equal(await context.autoDetectSiteName(tab), true);
+    assert.equal((await context.getTriggerSettings('an.example.com'))[0].name, 'ARGO_NCC');
+    assert.equal(await context.autoDetectSiteName(tab), false, 'already saved');
+
+    await context.setSiteCookieName('an.example.com', '');
+    browser.storage.sync.data.cookie_ncc = 'MY_NCC';
+    assert.equal(await context.autoDetectSiteName(tab), false, 'global name chosen by the user');
+});
+
 test('nccUrl adds ncc=1 and keeps the rest of the url', () => {
     const { context } = load(androidBrowser([], []), ['common.js']);
     assert.equal(context.nccUrl('https://shop.example.com/catalog/'), 'https://shop.example.com/catalog/?ncc=1');

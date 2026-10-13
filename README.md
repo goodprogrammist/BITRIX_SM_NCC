@@ -38,6 +38,7 @@ plus `_NCC` (`Bitrix\Main\Composite\Helper::getOptions()`).
   changes its color and gets the `N` badge;
 - "Set cookie for" — the current host only or a parent domain with all its subdomains
   (e.g. `.example.com` for `www.example.com` and `shop.example.com`), remembered per host;
+- the cookie name is detected automatically from the site's own cookies (`ARGO_GUEST_ID` → `ARGO_NCC`) and saved for the site, unless you set a name yourself;
 - click the cookie name — own cookie name for the current site (for a site with another cookie prefix);
   an enabled cookie is moved to the new name; other sites keep the name from the settings;
 - "Open without composite (?ncc=1)" — reloads the current page with `?ncc=1`.

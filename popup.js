@@ -24,6 +24,7 @@ async function render() {
         return;
     }
 
+    await autoDetectSiteName(popupTab);
     let triggers = await getTriggerSettings(host);
     let states = await getStates(popupTab);
     let container = document.querySelector('.triggers');

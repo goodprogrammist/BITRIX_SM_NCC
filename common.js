@@ -249,6 +249,64 @@ async function setScope(host, scope) {
     log('scope for', host, '=', scope || '(host only)');
 }
 
+// Bitrix cookies are named <prefix>_<NAME> (prefix = option "cookie_name" of the main module,
+// BITRIX_SM by default). Returns the NCC cookie name for the prefix found among the cookie names, '' if none.
+const BITRIX_COOKIE_RE = /^(.+?)_(?:GUEST_ID|LAST_VISIT|SALE_UID|LOGIN|UIDH|UIDL|PK|kernel(?:_\d+)?)$/;
+
+function nccNameFromCookieNames(names) {
+    let counts = {};
+    for (let name of names) {
+        let match = BITRIX_COOKIE_RE.exec(name);
+        if (match) {
+            counts[match[1]] = (counts[match[1]] || 0) + 1;
+        }
+    }
+    let prefixes = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    return prefixes.length ? prefixes[0] + '_NCC' : '';
+}
+
+// Detects the cookie name of the site from the cookies the page sends (HttpOnly ones included)
+async function detectCookieName(tab) {
+    if (!tab || !isSupportedUrl(tab.url)) {
+        return '';
+    }
+    let query = { url: tab.url, storeId: await getStoreId(tab) };
+    if (IS_FIREFOX) {
+        query.firstPartyDomain = null;
+    }
+    try {
+        let cookies = await callApi('cookies.getAll', [query], []);
+        return nccNameFromCookieNames(cookies.map(cookie => cookie.name));
+    } catch (e) {
+        logError('detectCookieName failed for', tab.url, e);
+        return '';
+    }
+}
+
+// Saves the detected name for the site, unless the user chose a name himself (per-site or global)
+// or has already turned on the cookie with the current name. Returns true if the name was changed.
+async function autoDetectSiteName(tab) {
+    if (!tab || !isSupportedUrl(tab.url)) {
+        return false;
+    }
+    let host = getHost(tab.url);
+    let trigger = TRIGGERS[0];
+    let config = await callApi('storage.' + SETTINGS_AREA + '.get', [trigger.key], {});
+    if (await getSiteCookieName(host) || (config[trigger.key] && config[trigger.key] !== trigger.defaultName && isValidCookieName(config[trigger.key]))) {
+        return false;
+    }
+    let detected = await detectCookieName(tab);
+    if (!detected || detected === trigger.defaultName) {
+        return false;
+    }
+    if (await getCookie(tab, (await getTriggerSettings(host))[0])) {
+        return false;
+    }
+    await setSiteCookieName(host, detected);
+    log('cookie name detected for', host, '=', detected);
+    return true;
+}
+
 async function getCookie(tab, trigger) {
     if (!tab || !isSupportedUrl(tab.url)) {
         return null;
@@ -395,6 +453,7 @@ async function toggleTrigger(tab, triggerId) {
         log('toggleTrigger: skipped, unsupported url', tab && tab.url);
         return false;
     }
+    await autoDetectSiteName(tab);
     let triggers = await getTriggerSettings(getHost(tab.url));
     let trigger = triggers.find(t => t.id === triggerId);
     if (await getCookie(tab, trigger)) {
