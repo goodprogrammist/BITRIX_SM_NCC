@@ -17,7 +17,7 @@ Features:
 • The toolbar popup sets and removes BITRIX_SM_NCC=Y for the current site; the "N" badge shows it is on
 • The cookie is kept: Bitrix deletes the _NCC cookie for anonymous visitors on every page, the extension sets it again until you turn it off
 • Cookie for the current host only or for a parent domain with all subdomains
-• Own cookie name for a site with another cookie prefix (the exact name is COOKIE_NCC in /bitrix/html_pages/.config.php)
+• The cookie name is detected automatically from the site prefix (ARGO_GUEST_ID → ARGO_NCC); you can set your own (the exact name is COOKIE_NCC in /bitrix/html_pages/.config.php)
 • "Open without composite (?ncc=1)" button — for servers where nginx serves the composite cache itself and does not check the cookie
 • Keyboard shortcut Alt+Shift+Y
 • Works with Firefox containers, private windows and Chrome incognito (after you allow the extension there in the browser add-on settings)
