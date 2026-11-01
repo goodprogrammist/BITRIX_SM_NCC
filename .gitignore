@@ -5,9 +5,6 @@
 # packed extendsion
 *.zip
 
-# shells
-*.sh
-
 
 # node
 node_modules/

@@ -11,6 +11,8 @@ export default {
         'screens',
         'store',
         'docs',
+        // Service git scripts (symlinks to ../sh/backup/git)
+        '*.sh',
         // Not used by the addon (picture for the repository)
         'icons/xdebug.png',
         '*.md'

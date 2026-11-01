@@ -1,0 +1,1 @@
+../sh/backup/git/pull.sh
